@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "li3mzZamBXs6MZMQgYRWjiADc", consumerSecret: "Syj9xq4q1xcxsUHn3PLdbMtagalni4PTwZ2ExG3GIsoWeoBs8t")
+        
+        print(url.description)
+        
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        
+        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accesstoken: BDBOAuth1Credential?) -> Void in
+            
+            
+            
+            
+            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil,
+                               progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
+                
+                print("accout\(response)")
+            }, failure: { (operation: URLSessionDataTask?, error: Error) -> Void in
+            
+        
+            })
+            
+            
+            
+       
+            
+            print("I got an access to   ken")
+        }) { (error: Error?) -> Void in
+            print("error: \(error!.localizedDescription)")
+        
+        }
+    
+        return true
     }
 
 
