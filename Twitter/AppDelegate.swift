@@ -42,42 +42,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "li3mzZamBXs6MZMQgYRWjiADc", consumerSecret: "Syj9xq4q1xcxsUHn3PLdbMtagalni4PTwZ2ExG3GIsoWeoBs8t")
-        
         print(url.description)
-        
+
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
-        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accesstoken: BDBOAuth1Credential?) -> Void in
-            
-    
-            
-            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil,
-                               progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
-                
-                let userDictionary = response as! NSDictionary
-                //print("user: \(user)")
-                                
-                let user = User(dictionary: userDictionary)
-                                
-                                
-                let tweets = Tweet.tweetsWithArray(dictionaries: userDictionary)
-                                
-                print("name:\(user.name)")
-                print("screenname:\(user.screenName)")
-                print("name:\(user.profileUrl)")
-                print("name:\(user.tagline)")
-                
-                                
-                
-            }, failure: { (operation: URLSessionDataTask?, error: Error) -> Void in
-            
+        let client = TwitterClient.sharedInstance!
         
+        client.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accesstoken: BDBOAuth1Credential?) -> Void in
+        
+            
+            client.homeTimeLine(success: { (tweets: [Tweet]) in
+                for tweet in tweets {
+                    print(tweet.text)
+                }
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
             })
             
-            
-            
-       
+            client.currentAccount()
             
             print("I got an access to   ken")
         }) { (error: Error?) -> Void in
