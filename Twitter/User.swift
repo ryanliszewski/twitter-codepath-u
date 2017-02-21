@@ -46,8 +46,8 @@ class User: NSObject {
                 let userData = defaults.object(forKey: "currentUserData") as? Data
                 
                 if let userData = userData {
-                    let dictionary = try! JSONSerialization.jsonObject(with: userData, options: .allowFragments) as! NSDictionary
-                    _currentUser = User(dictionary: dictionary)
+                    let dictionary = try! JSONSerialization.jsonObject(with: userData, options: .allowFragments)
+                    _currentUser = User(dictionary: dictionary as! NSDictionary)
                 }
             }
             
@@ -62,7 +62,7 @@ class User: NSObject {
                 
                 defaults.set(data, forKey: "currentUserData")
             }else{
-                defaults.set(nil, forKey: "currentUserData")
+                defaults.removeObject(forKey: "currentUserData")
             }
           
             

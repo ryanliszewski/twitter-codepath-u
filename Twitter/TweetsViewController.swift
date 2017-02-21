@@ -7,26 +7,31 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
-    var tweets: [Tweet]?
+    @IBOutlet weak var tableView: UITableView!
+    
+    var tweets: [Tweet]? = nil
+    
+    //var hud: MBProgressHUD!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
-            
-            self.tweets = tweets
-            
-            for tweet in tweets {
-                print(tweet.text!)
-                
-            }
-        }, failure: { (error: Error) in
-            print(error.localizedDescription)
-        })
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
+        getTweets()
+        
+
         
         // Do any additional setup after loading the view.
     }
@@ -35,6 +40,50 @@ class TweetsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func getTweets(){
+        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
+            
+
+            self.tweets = tweets
+            
+            for tweet in tweets {
+                print(tweet.text!)
+            }
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
+
+            self.tableView.reloadData()
+            
+        }, failure: { (error: Error) in
+            print(error.localizedDescription)
+        })
+
+    }
+    
+    
+    /*
+        TABLEVIEW FUNCTIONS
+    */
+    
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        
+        if tweets != nil {
+            cell.tweet = tweets?[indexPath.row]
+            cell.selectionStyle = .none
+        }
+        
+        return cell 
+    }
+    
     
     
     @IBAction func onLogoutButton(_ sender: Any) {
