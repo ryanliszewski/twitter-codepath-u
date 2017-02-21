@@ -50,13 +50,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accesstoken: BDBOAuth1Credential?) -> Void in
             
-            
-            
+    
             
             twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil,
                                progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
                 
-                print("accout\(response)")
+                let userDictionary = response as! NSDictionary
+                //print("user: \(user)")
+                                
+                let user = User(dictionary: userDictionary)
+                                
+                                
+                let tweets = Tweet.tweetsWithArray(dictionaries: userDictionary)
+                                
+                print("name:\(user.name)")
+                print("screenname:\(user.screenName)")
+                print("name:\(user.profileUrl)")
+                print("name:\(user.tagline)")
+                
+                                
+                
             }, failure: { (operation: URLSessionDataTask?, error: Error) -> Void in
             
         
