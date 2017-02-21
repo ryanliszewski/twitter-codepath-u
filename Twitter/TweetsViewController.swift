@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TweetCellDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -69,12 +69,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return (tweets?.count) ?? 0
     }
     
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        cell.onButtonClickedDelegate = self
+        
         
         if tweets != nil {
             cell.tweet = tweets?[indexPath.row]
@@ -82,6 +84,16 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         return cell 
+    }
+    
+    
+    func onRetweetButtonClicked(tweetCell: TweetCell!) {
+        print("Retweet Delegate working!")
+        print(tweetCell.tweet.user?.name)
+    }
+    
+    func onFavoriteButtonClicked(tweetCell: TweetCell!) {
+        print("favorite button working")
     }
     
     

@@ -96,11 +96,45 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKB-lo-KDA">
+                                                    <rect key="frame" x="69" y="68" width="37" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="onRetweetButtonClicked:" destination="b9Y-ex-J7H" eventType="touchUpInside" id="Sex-TW-A9w"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6v-e7-VhK">
+                                                    <rect key="frame" x="105" y="73" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DY5-rJ-vZ7">
+                                                    <rect key="frame" x="244" y="78" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTw-Yt-MNN">
+                                                    <rect key="frame" x="201" y="69" width="35" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="onFavoriteButtonClicked:" destination="b9Y-ex-J7H" eventType="touchUpInside" id="KXu-tl-KDr"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="MTw-Yt-MNN" id="QGU-l8-2jd"/>
+                                            <outlet property="favoritesCountLabel" destination="DY5-rJ-vZ7" id="6s7-uh-AkZ"/>
                                             <outlet property="nameLabel" destination="xHx-bf-cNX" id="Xmh-G3-P0L"/>
                                             <outlet property="profileImageView" destination="7qG-8Z-Ur0" id="Vw1-Dk-Hjm"/>
+                                            <outlet property="retweetButton" destination="CKB-lo-KDA" id="Z3o-xu-8Lv"/>
+                                            <outlet property="retweetCountLabel" destination="i6v-e7-VhK" id="Xev-dV-onA"/>
                                             <outlet property="timeStampLabel" destination="Lqi-Fc-Fo0" id="lKG-ZA-Zrc"/>
                                             <outlet property="tweetLabel" destination="GBC-Mb-kHw" id="mkI-Tx-WRM"/>
                                             <outlet property="userNameLabel" destination="Lwx-ME-QUA" id="n29-5v-tfH"/>
@@ -147,4 +181,8 @@
             <point key="canvasLocation" x="1036" y="135.38230884557723"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favor-icon" width="30" height="30"/>
+        <image name="retweet-icon" width="30" height="30"/>
+    </resources>
 </document>

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -15,7 +16,16 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+   
+    @IBOutlet weak var retweetCountLabel: UILabel!
     
+    @IBOutlet weak var favoritesCountLabel: UILabel!
+    @IBOutlet weak var retweetButton: UIButton!
+    
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    var onButtonClickedDelegate: TweetCellDelegate!
+   
     var tweet: Tweet! {
         didSet {
             nameLabel.text = tweet.user?.name
@@ -24,8 +34,6 @@ class TweetCell: UITableViewCell {
             tweetLabel.text = tweet.text
             
             profileImageView.setImageWith((tweet.user?.profileUrl)!)
-            
-            
         }
     }
     
@@ -40,5 +48,20 @@ class TweetCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func onRetweetButtonClicked(_ sender: Any) {
+        print("Retweet!")
+        onButtonClickedDelegate.onRetweetButtonClicked(tweetCell: self)
+    }
+    
+    @IBAction func onFavoriteButtonClicked(_ sender: Any) {
+        print("favoirte!")
+        onButtonClickedDelegate.onFavoriteButtonClicked(tweetCell: self)
+    }
+   
+}
 
+protocol TweetCellDelegate: class {
+    func onRetweetButtonClicked(tweetCell: TweetCell!)
+    func onFavoriteButtonClicked(tweetCell: TweetCell!)
 }
