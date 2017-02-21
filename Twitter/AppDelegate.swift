@@ -17,6 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        if User.currentUser != nil {
+            print("There is a current user")
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyBoard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            window?.rootViewController = viewController
+            
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main) { (Notification) in
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyBoard.instantiateInitialViewController()
+            
+            self.window?.rootViewController = viewController
+        }
         return true
     }
 
@@ -42,31 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        print(url.description)
-
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
         
-        let client = TwitterClient.sharedInstance!
-        
-        client.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accesstoken: BDBOAuth1Credential?) -> Void in
-        
-            
-            client.homeTimeLine(success: { (tweets: [Tweet]) in
-                for tweet in tweets {
-                    print(tweet.text)
-                }
-            }, failure: { (error: Error) in
-                print(error.localizedDescription)
-            })
-            
-            client.currentAccount()
-            
-            print("I got an access to   ken")
-        }) { (error: Error?) -> Void in
-            print("error: \(error!.localizedDescription)")
-        
-        }
-    
+        TwitterClient.sharedInstance?.handleOpenUrl(url: url)
         return true
     }
 

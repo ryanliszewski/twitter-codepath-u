@@ -1,19 +1,33 @@
 //
-//  LoginViewController.swift
+//  TweetsViewController.swift
 //  Twitter
 //
-//  Created by Ryan Liszewski on 2/19/17.
+//  Created by Ryan Liszewski on 2/20/17.
 //  Copyright © 2017 Smiley. All rights reserved.
 //
 
 import UIKit
-import BDBOAuth1Manager
 
-class LoginViewController: UIViewController {
+class TweetsViewController: UIViewController {
 
+    
+    var tweets: [Tweet]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
+            
+            self.tweets = tweets
+            
+            for tweet in tweets {
+                print(tweet.text!)
+                
+            }
+        }, failure: { (error: Error) in
+            print(error.localizedDescription)
+        })
+        
         // Do any additional setup after loading the view.
     }
 
@@ -22,19 +36,13 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     
-    @IBAction func onLoginButton(_ sender: Any) {
-
-        let client = TwitterClient.sharedInstance
+    @IBAction func onLogoutButton(_ sender: Any) {
+        TwitterClient.sharedInstance?.logout()
         
-        client?.login(success: { 
-            print("i've logged in")
-            self.performSegue(withIdentifier: "LoginSegue", sender: nil)
-        }, failure: { (error: Error) in
-            print("Error:\(error.localizedDescription)")
-        })
     }
+    
+
     /*
     // MARK: - Navigation
 
