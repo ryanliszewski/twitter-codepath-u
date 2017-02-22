@@ -88,6 +88,34 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func retweet(tweetID: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        
+        post("1.1/statuses/retweet/\(tweetID).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            print("retweeted the tweet")
+            success()
+        }) { (operation: URLSessionDataTask?, error: Error) in
+            print("error retweeting")
+        }
+    }
+    
+    func unRetweet(tweetID: Int, success: @escaping() -> (), failure: @escaping (Error) -> ()) {
+    
+        post("1.1/statuses/unretweet/\(tweetID).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            print("unretweeted the tweet")
+            success()
+        }) { (operation: URLSessionDataTask?, error: Error) in
+            print("error un retweeting")
+        }
+    }
+    
+    func favorite(tweetId: Int, success: @escaping() -> (), failure: @escaping (Error) -> ()) {
+        
+        
+        
+        
+    }
+                 
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
         
         get("1.1/account/verify_credentials.json", parameters: nil,

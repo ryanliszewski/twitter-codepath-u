@@ -89,7 +89,33 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func onRetweetButtonClicked(tweetCell: TweetCell!) {
         print("Retweet Delegate working!")
-        print(tweetCell.tweet.user?.name)
+        
+        
+        if(tweetCell.tweet.isRetweeted) {
+            TwitterClient.sharedInstance?.unRetweet(tweetID: tweetCell.tweet.id, success: { 
+                print("The tweet was successfully retweeted")
+                
+                tweetCell.retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon")
+                tweetCell.tweet.retweetCount = tweetCell.tweet.retweetCount - 1
+                tweetCell.retweetCountLabel.text = String(tweetCell.tweet.retweetCount)
+                tweetCell.tweet.isRetweeted = false
+                
+            }, failure: { (error: Error) in
+                print("There was an error unretweeting")
+            })
+        } else {
+            TwitterClient.sharedInstance?.retweet(tweetID: tweetCell.tweet.id , success: {
+                print("The tweet was successfully tweeted")
+                
+                tweetCell.retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon-green")
+                tweetCell.tweet.retweetCount = tweetCell.tweet.retweetCount + 1
+                tweetCell.retweetCountLabel.text = String(tweetCell.tweet.retweetCount)
+                tweetCell.tweet.isRetweeted = true
+                
+            }, failure: { (error: Error) in
+                
+            })
+        }
     }
     
     func onFavoriteButtonClicked(tweetCell: TweetCell!) {

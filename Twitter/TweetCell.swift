@@ -33,6 +33,21 @@ class TweetCell: UITableViewCell {
             timeStampLabel.text = tweet.timeStamp
             tweetLabel.text = tweet.text
             
+            if(tweet.isRetweeted){
+                retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon-green")
+            }else {
+                retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon")
+            }
+            
+            if(tweet.isFavorited){
+                favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon-red")
+            } else {
+                favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon")
+            }
+            
+            favoritesCountLabel.text = String(tweet.favoritesCount)
+            retweetCountLabel.text = String(tweet.retweetCount)
+            
             profileImageView.setImageWith((tweet.user?.profileUrl)!)
         }
     }
