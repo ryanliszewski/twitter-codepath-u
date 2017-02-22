@@ -21,6 +21,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var nextTweetID: Int = 0
     
+    var refreshControl = UIRefreshControl()
+    
     //var hud: MBProgressHUD!
     
     override func viewDidLoad() {
@@ -33,7 +35,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        let refreshControl = UIRefreshControl()
+        //let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         // add refresh control to table view
         tableView.insertSubview(refreshControl, at: 0)
@@ -71,6 +73,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             MBProgressHUD.hide(for: self.view, animated: true)
+            self.refreshControl.endRefreshing()
 
             self.tableView.reloadData()
             
@@ -97,15 +100,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         getTweets()
-        refreshControl.endRefreshing()
+        //refreshControl.endRefreshing()
         
     }
         
         
-        
-    
-    
-    
     /*
         TABLEVIEW FUNCTIONS
     */

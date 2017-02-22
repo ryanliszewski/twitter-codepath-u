@@ -77,9 +77,11 @@ class TwitterClient: BDBOAuth1SessionManager {
             progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
                 
                 let dictionaries = response as! [NSDictionary]
-                //print("user: \(user)")
+               print(response)
                 
                 let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+                
+                
                 
                 success(tweets)
                 
