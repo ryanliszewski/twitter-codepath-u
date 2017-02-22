@@ -88,6 +88,24 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func getMoreTweetsFromHomeTimeLine(sinceID: Int, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        
+        get("1.1/statuses/home_timeline.json?max_id=\(sinceID)", parameters: nil,
+            progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
+                
+                let dictionaries = response as! [NSDictionary]
+                //print("user: \(user)")
+                
+                let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+                
+                success(tweets)
+                
+        }, failure: { (operation: URLSessionDataTask?, error: Error) -> Void in
+            failure(error)
+        })
+    }
+    
+    
     func retweet(tweetID: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
         post("1.1/statuses/retweet/\(tweetID).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
@@ -132,7 +150,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                    progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
                     
                     let userDictionary = response as! NSDictionary
-                    //print("user: \(user)")
+                    
                     
                     let user = User(dictionary: userDictionary)
                     

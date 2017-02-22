@@ -9,12 +9,17 @@
 import UIKit
 import MBProgressHUD
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TweetCellDelegate {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetCellDelegate {
 
+    
+    var isMoreDataLoading: Bool = false
+    var loadingMoreView:InfiniteScrollActivityView?
     
     @IBOutlet weak var tableView: UITableView!
     
-    var tweets: [Tweet]? = nil
+    var tweets: [Tweet]! = nil
+    
+    var nextTweetID: Int = 0
     
     //var hud: MBProgressHUD!
     
@@ -27,6 +32,22 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        // add refresh control to table view
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.isHidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset;
+        insets.bottom += InfiniteScrollActivityView.defaultHeight;
+        tableView.contentInset = insets
 
         getTweets()
     
@@ -56,8 +77,33 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }, failure: { (error: Error) in
             print(error.localizedDescription)
         })
-
     }
+    
+    func getMoreTweets(){
+        
+        TwitterClient.sharedInstance?.getMoreTweetsFromHomeTimeLine(sinceID: nextTweetID, success: { (newTweets: [Tweet]) in
+            
+            self.tweets.append(contentsOf: newTweets)
+            self.loadingMoreView?.stopAnimating()
+            self.isMoreDataLoading = false 
+            
+            self.tableView.reloadData()
+            
+            
+        }, failure: { (error:Error) in
+            print("Error getting new tweets")
+        })
+    }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        getTweets()
+        refreshControl.endRefreshing()
+        
+    }
+        
+        
+        
+    
     
     
     /*
@@ -66,7 +112,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (tweets?.count) ?? 0
+        
+        if(tweets != nil){
+            return self.tweets.count
+        }else {
+            return 0
+        }
+        
     }
     
     
@@ -83,6 +135,49 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell 
     }
     
+    
+    
+    /*
+        
+        SCROLLVIEW FUNCTIONS
+ 
+    */
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+                isMoreDataLoading = true
+                
+                nextTweetID = self.tweets[self.tweets.count - 1].id
+                
+                getMoreTweets()
+                
+                
+                
+                
+                // ... Code to load more results ...
+            }
+        }
+    }
+    
+    
+    
+    /*
+ 
+        RETWEET AND FAVORITE BUTTON FUNCTION HANDLERS
+ 
+    */
     
     func onRetweetButtonClicked(tweetCell: TweetCell!) {
 
