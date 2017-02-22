@@ -65,12 +65,10 @@ class TweetCell: UITableViewCell {
     }
     
     @IBAction func onRetweetButtonClicked(_ sender: Any) {
-        print("Retweet!")
         onButtonClickedDelegate.onRetweetButtonClicked(tweetCell: self)
     }
     
     @IBAction func onFavoriteButtonClicked(_ sender: Any) {
-        print("favoirte!")
         onButtonClickedDelegate.onFavoriteButtonClicked(tweetCell: self)
     }
    

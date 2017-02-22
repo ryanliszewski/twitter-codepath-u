@@ -26,13 +26,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
-        
         MBProgressHUD.showAdded(to: self.view, animated: true)
 
         getTweets()
-        
-
-        
+    
         // Do any additional setup after loading the view.
     }
 
@@ -88,12 +85,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func onRetweetButtonClicked(tweetCell: TweetCell!) {
-        print("Retweet Delegate working!")
-        
-        
+
         if(tweetCell.tweet.isRetweeted) {
             TwitterClient.sharedInstance?.unRetweet(tweetID: tweetCell.tweet.id, success: { 
-                print("The tweet was successfully retweeted")
                 
                 tweetCell.retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon")
                 tweetCell.tweet.retweetCount = tweetCell.tweet.retweetCount - 1
@@ -105,23 +99,42 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
         } else {
             TwitterClient.sharedInstance?.retweet(tweetID: tweetCell.tweet.id , success: {
-                print("The tweet was successfully tweeted")
-                
+        
                 tweetCell.retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon-green")
                 tweetCell.tweet.retweetCount = tweetCell.tweet.retweetCount + 1
                 tweetCell.retweetCountLabel.text = String(tweetCell.tweet.retweetCount)
                 tweetCell.tweet.isRetweeted = true
                 
             }, failure: { (error: Error) in
-                
+                print("The was an error retweeting")
             })
         }
     }
     
     func onFavoriteButtonClicked(tweetCell: TweetCell!) {
-        print("favorite button working")
+        
+        if(tweetCell.tweet.isFavorited){
+            TwitterClient.sharedInstance?.unFavorite(tweetID: tweetCell.tweet.id, success: { 
+                
+                tweetCell.favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon")
+                tweetCell.tweet.favoritesCount = tweetCell.tweet.favoritesCount - 1
+                tweetCell.favoritesCountLabel.text = String(tweetCell.tweet.favoritesCount)
+                tweetCell.tweet.isFavorited = false
+            }, failure: { (error: Error) in
+                print("There was an error unfavoriting")
+            })
+        } else {
+            TwitterClient.sharedInstance?.favorite(tweetID: tweetCell.tweet.id, success: { 
+                tweetCell.favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon-red")
+                tweetCell.tweet.favoritesCount = tweetCell.tweet.favoritesCount + 1
+                tweetCell.favoritesCountLabel.text = String(tweetCell.tweet.favoritesCount)
+                tweetCell.tweet.isFavorited = true 
+                
+            }, failure: { (error: Error) in
+                print("There was an error favoriting ")
+            })
+        }
     }
-    
     
     
     @IBAction func onLogoutButton(_ sender: Any) {
@@ -129,7 +142,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-
     /*
     // MARK: - Navigation
 
