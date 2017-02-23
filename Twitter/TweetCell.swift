@@ -22,15 +22,27 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoritesCountLabel: UILabel!
     @IBOutlet weak var retweetButton: UIButton!
     
+    @IBOutlet weak var retweetIconImageView: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
+    
+    @IBOutlet weak var retweetedUserNameLabel: UILabel!
+    
+    @IBOutlet weak var retweetView: UIView!
+    @IBOutlet weak var retweetedImageView: UIImageView!
+    @IBOutlet weak var retweetedNameLabel: UILabel!
+    
+    @IBOutlet weak var retweetViewHeightConstraint: NSLayoutConstraint!
     
     var onButtonClickedDelegate: TweetCellDelegate!
    
     var tweet: Tweet! {
         didSet {
+            
+            tweetLabel.adjustsFontSizeToFitWidth = true
+            tweetLabel.minimumScaleFactor = 0.5
             nameLabel.text = tweet.user?.name
             userNameLabel.text = tweet.user?.screenName
-            timeStampLabel.text = tweet.timeStamp
+            //timeStampLabel.text = tweet.timeStamp
             tweetLabel.text = tweet.text
             
             if(tweet.isRetweeted){
@@ -44,6 +56,19 @@ class TweetCell: UITableViewCell {
             } else {
                 favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon")
             }
+            
+            print(tweet.isRetweet)
+            if(tweet.isRetweet){
+                
+                self.retweetViewHeightConstraint.constant = 22
+                
+                retweetView.isHidden = false
+                retweetedNameLabel.text = tweet.retweetUsername! + " Retweeted"
+            } else {
+                retweetView.isHidden = true
+                self.retweetViewHeightConstraint.constant = 0
+            }
+            
             
             favoritesCountLabel.text = String(tweet.favoritesCount)
             retweetCountLabel.text = String(tweet.retweetCount)

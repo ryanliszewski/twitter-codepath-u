@@ -19,18 +19,22 @@ class Tweet: NSObject {
     var isRetweet: Bool
     var isFavorited: Bool
     var id: Int = 0
+    var retweetUsername: String?
     
     
     init(dictionary: NSDictionary){
         
-        user = User(dictionary: dictionary["user"] as! NSDictionary)
-        
-        
+        let timeStampString = dictionary["created_at"] as? String
         
         if(dictionary["retweeted_status"] != nil) {
             self.isRetweet = true
             
             let retweetDictionary = dictionary["retweeted_status"] as! NSDictionary
+            let retweetUserNameDictionary = dictionary["user"] as! NSDictionary
+            
+            
+            retweetUsername = retweetUserNameDictionary["name"] as? String
+            
             
             user = User(dictionary: retweetDictionary["user"] as! NSDictionary)
             
@@ -39,10 +43,14 @@ class Tweet: NSObject {
             retweetCount = (retweetDictionary["retweet_count"] as? Int) ?? 0
             favoritesCount = (retweetDictionary["favorite_count"] as? Int) ?? 0
             
+            let timeStampString = retweetDictionary["created_at"] as? String
+            
             id = retweetDictionary["id"] as! Int
+            
         } else {
             self.isRetweet = false
             
+            user = User(dictionary: dictionary["user"] as! NSDictionary)
             
             id = dictionary["id"] as! Int
             
@@ -51,12 +59,11 @@ class Tweet: NSObject {
             retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
             favoritesCount = (dictionary["favorite_count"] as? Int) ?? 0
             
+            retweetUsername = nil
             }
   
         isFavorited = dictionary["favorited"] as! Bool
         isRetweeted = dictionary["retweeted"] as! Bool
-        
-        let timeStampString = dictionary["created_at"] as? String
         
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"

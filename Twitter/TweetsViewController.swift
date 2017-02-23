@@ -111,13 +111,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if(tweets != nil){
             return self.tweets.count
         }else {
             return 0
         }
-        
     }
     
     
@@ -133,8 +131,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell 
     }
-    
-    
     
     /*
         
