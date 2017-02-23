@@ -30,6 +30,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
         
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         

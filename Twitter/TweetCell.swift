@@ -41,7 +41,7 @@ class TweetCell: UITableViewCell {
             tweetLabel.adjustsFontSizeToFitWidth = true
             tweetLabel.minimumScaleFactor = 0.5
             nameLabel.text = tweet.user?.name
-            userNameLabel.text = tweet.user?.screenName
+            userNameLabel.text = (tweet.user?.screenName)! + "･ 2h"
             //timeStampLabel.text = tweet.timeStamp
             tweetLabel.text = tweet.text
             
