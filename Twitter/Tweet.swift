@@ -71,10 +71,42 @@ class Tweet: NSObject {
         if let timeStampString = timeStampString {
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            let tweetTimeStamp = formatter.date(from: timeStampString)
-            timeStamp = formatter.string(from: tweetTimeStamp!)
+            let timeStampDate = formatter.date(from: timeStampString)!
+            timeStamp = Tweet.formatTweetTimeStamp(timeStampDate.timeIntervalSinceNow)
         }
+        
+        
     }
+    
+    class func formatTweetTimeStamp(_ tweetTimeStamp: TimeInterval) -> String{
+        var time = Int(tweetTimeStamp)
+        var timeSinceTweet: Int = 0
+        var timeLabelCharacter = ""
+        
+        time = time * -1
+        
+        
+        if(time < 60) {//Seconds ago
+            timeSinceTweet = time
+           timeLabelCharacter = "s"
+        } else if ((time/60) <= 60) { //Minutes ago
+            timeSinceTweet = time / 60
+            timeLabelCharacter = "m"
+        } else if ((time/60/60) <= 24){ //Hours ago
+            timeSinceTweet = time/60/60
+            timeLabelCharacter = "h"
+        } else if((time/60/60/24) <= 365){ //Days ago
+            timeSinceTweet = time/60/60/24
+            timeLabelCharacter = "d"
+        } else if((time/60/60/24/365) <= 1){ //Years ago
+            timeSinceTweet = time/60/60/24/365
+            timeLabelCharacter = "y"
+        }
+        
+        return("\(timeSinceTweet)\(timeLabelCharacter)")
+    }
+    
+    
     
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet]{
     

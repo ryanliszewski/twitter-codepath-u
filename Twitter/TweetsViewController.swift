@@ -126,6 +126,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.onButtonClickedDelegate = self
         
         
+        
+        
+        
         if tweets != nil {
             cell.tweet = tweets?[indexPath.row]
             cell.selectionStyle = .none

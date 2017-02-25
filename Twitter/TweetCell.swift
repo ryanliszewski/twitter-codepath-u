@@ -41,7 +41,7 @@ class TweetCell: UITableViewCell {
             tweetLabel.adjustsFontSizeToFitWidth = true
             tweetLabel.minimumScaleFactor = 0.5
             nameLabel.text = tweet.user?.name
-            userNameLabel.text = (tweet.user?.screenName)! + "･ 2h"
+            userNameLabel.text = (tweet.user?.screenName)! + "･ " + tweet.timeStamp!
             //timeStampLabel.text = tweet.timeStamp
             tweetLabel.text = tweet.text
             
@@ -57,7 +57,6 @@ class TweetCell: UITableViewCell {
                 favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon")
             }
             
-            print(tweet.isRetweet)
             if(tweet.isRetweet){
                 
                 self.retweetViewHeightConstraint.constant = 22
@@ -69,9 +68,19 @@ class TweetCell: UITableViewCell {
                 self.retweetViewHeightConstraint.constant = 0
             }
             
+            if(tweet.favoritesCount == 0) {
+                favoritesCountLabel.isHidden = true
+            } else {
+                favoritesCountLabel.isHidden = false
+                favoritesCountLabel.text = String(tweet.favoritesCount)
+            }
             
-            favoritesCountLabel.text = String(tweet.favoritesCount)
-            retweetCountLabel.text = String(tweet.retweetCount)
+            if(tweet.retweetCount == 0){
+                retweetCountLabel.isHidden = true
+            } else {
+                retweetCountLabel.isHidden = false
+                retweetCountLabel.text = String(tweet.retweetCount)
+            }
             
             profileImageView.setImageWith((tweet.user?.profileUrl)!)
         }
@@ -89,6 +98,7 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
     @IBAction func onRetweetButtonClicked(_ sender: Any) {
         onButtonClickedDelegate.onRetweetButtonClicked(tweetCell: self)
     }
@@ -96,6 +106,7 @@ class TweetCell: UITableViewCell {
     @IBAction func onFavoriteButtonClicked(_ sender: Any) {
         onButtonClickedDelegate.onFavoriteButtonClicked(tweetCell: self)
     }
+    
    
 }
 
