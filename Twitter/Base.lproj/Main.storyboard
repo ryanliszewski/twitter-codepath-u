@@ -22,16 +22,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ie-Yp-ynq">
-                                <rect key="frame" x="121" y="288" width="192" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login to Twitter"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ie-Yp-ynq">
+                                <rect key="frame" x="91" y="550" width="192" height="39"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                <state key="normal" title="Login ">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="onLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EP0-A0-bvy"/>
                                 </connections>
                             </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="TwitterLogo" translatesAutoresizingMaskIntoConstraints="NO" id="aZ7-bv-jO3">
+                                <rect key="frame" x="127" y="195" width="120" height="120"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Md-Y1-mZK">
+                                <rect key="frame" x="117" y="323" width="166" height="23"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="19"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.51764705882352935" blue="0.70588235294117641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0ie-Yp-ynq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9Md-Y1-mZK" secondAttribute="bottom" constant="123" id="1ml-O7-dRv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0ie-Yp-ynq" secondAttribute="trailing" constant="76" id="3hn-Ye-Wa1"/>
+                            <constraint firstItem="0ie-Yp-ynq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="75" id="6go-gP-yBs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aZ7-bv-jO3" secondAttribute="trailing" constant="112" id="9Gp-12-wff"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Md-Y1-mZK" secondAttribute="trailing" constant="76" id="DUF-hY-NKa"/>
+                            <constraint firstItem="aZ7-bv-jO3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="111" id="cqG-uq-s4a"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0ie-Yp-ynq" secondAttribute="bottom" constant="78" id="gjR-xT-wiU"/>
+                            <constraint firstItem="9Md-Y1-mZK" firstAttribute="top" secondItem="aZ7-bv-jO3" secondAttribute="bottom" constant="8" id="hwY-Aa-aS9"/>
+                            <constraint firstItem="aZ7-bv-jO3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="175" id="v3V-ff-oA0"/>
+                            <constraint firstItem="9Md-Y1-mZK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="101" id="vhs-NX-HY9"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="uKx-0b-WQw" kind="presentation" identifier="LoginSegue" id="PiO-wL-KwP"/>
@@ -44,6 +67,7 @@
         <!--Tweets View Controller-->
         <scene sceneID="wwS-fa-JU0">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eZE-5D-3Tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="j5c-Fv-qDF" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZkZ-Hy-HC9"/>
@@ -61,7 +85,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b9Y-ex-J7H" id="Pgv-UV-sCv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="136.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ryan Liszewski" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHx-bf-cNX">
@@ -219,6 +243,9 @@
                     <navigationItem key="navigationItem" id="vje-6i-aSO">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="dPb-Uo-BGp">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onLogoutButton:" destination="j5c-Fv-qDF" id="TRb-IA-Knv"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="edit-icon" id="VN5-rm-cNL"/>
                     </navigationItem>
@@ -226,7 +253,6 @@
                         <outlet property="tableView" destination="vUN-c4-E1l" id="6pY-oc-ugF"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eZE-5D-3Tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1975.2" y="135.38230884557723"/>
         </scene>
@@ -251,6 +277,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="TwitterLogo" width="120" height="120"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>

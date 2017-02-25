@@ -34,6 +34,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.estimatedRowHeight = 140
         
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "Image-1"))
+        
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
@@ -234,8 +236,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onLogoutButton(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
-        
+
     }
+
+    
+    
+
+    
     
     /*
     // MARK: - Navigation
