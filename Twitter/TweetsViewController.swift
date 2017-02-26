@@ -190,7 +190,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 tweetCell.tweet.retweetCount = tweetCell.tweet.retweetCount - 1
                 tweetCell.retweetCountLabel.text = String(tweetCell.tweet.retweetCount)
                 tweetCell.tweet.isRetweeted = false
-                
+                self.tableView.reloadData()
             }, failure: { (error: Error) in
                 print("There was an error unretweeting")
             })
@@ -201,7 +201,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 tweetCell.tweet.retweetCount = tweetCell.tweet.retweetCount + 1
                 tweetCell.retweetCountLabel.text = String(tweetCell.tweet.retweetCount)
                 tweetCell.tweet.isRetweeted = true
-                
+                self.tableView.reloadData()
             }, failure: { (error: Error) in
                 print("The was an error retweeting")
             })
@@ -217,6 +217,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 tweetCell.tweet.favoritesCount = tweetCell.tweet.favoritesCount - 1
                 tweetCell.favoritesCountLabel.text = String(tweetCell.tweet.favoritesCount)
                 tweetCell.tweet.isFavorited = false
+                self.tableView.reloadData()
             }, failure: { (error: Error) in
                 print("There was an error unfavoriting")
             })
@@ -225,7 +226,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 tweetCell.favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon-red")
                 tweetCell.tweet.favoritesCount = tweetCell.tweet.favoritesCount + 1
                 tweetCell.favoritesCountLabel.text = String(tweetCell.tweet.favoritesCount)
-                tweetCell.tweet.isFavorited = true 
+                tweetCell.tweet.isFavorited = true
+                self.tableView.reloadData()
                 
             }, failure: { (error: Error) in
                 print("There was an error favoriting ")
@@ -236,7 +238,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onLogoutButton(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
-
+        print("test")
     }
 
     

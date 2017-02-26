@@ -2,7 +2,7 @@
 
 **Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: **20** hours spent in total
 
 ## User Stories
 
@@ -21,6 +21,19 @@ The following **optional** features are implemented:
 - [x] User can pull to refresh.
 
 The following **additional** features are implemented:
+- [x] Added Splash Screen 
+- [x] Changed UI of login in screen 
+- [x] Customized Nav bar 
+    - [x] Added Compose icon 
+    - [x] Added twitter icon as the title 
+    - [x] Added logout button 
+- [x] User can logout of twitter by hitting the logout button. User is then directed back to the login page. 
+- [x] Progress hud for tweet page.
+- [x] Custom formatted the time stamp just like twitters to display time as (s,m,h,d,w,m,y)
+- [x] Doesn't displays favorite and retweet count if they're 0. Updates them and displays the new count if the counts are incremented or decremented. 
+- [x] For retweets (Replicated how twitter displays retweets.): 
+    - [x] Displays the original tweet with all the correct data. Favorite Count, Retweet Count, time of tweet and all the correct user name. 
+    - [x] Displays a veiw of the retweet logo and the user name of who retweeted the tweet.
 
 - [ ] List anything else that you can get done to improve the app functionality!
 
@@ -33,7 +46,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/Di0ugLi.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -43,7 +56,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Ryan Liszewski]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
