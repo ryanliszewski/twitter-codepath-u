@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.swift
 //  Twitter
 //
@@ -14,36 +14,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var storyBoard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        //window = UIWindow(frame: UIScreen.main.bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         
-//        let storyBoard = UIStoryboard(name: "main", bundle: nil)
-//        
-//        let homeTimeLineNavigationController = storyBoard.instantiateViewController(withIdentifier: "") as! UINavigationController
-//        
-//        let profileTimeLineNavigationController = storyBoard.instantiateViewController(withIdentifier: "") as! UINavigationController
-
-         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        
+        //UITabBar.appearance().tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         if User.currentUser != nil {
             print("There is a current user")
-            
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyBoard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-            window?.rootViewController = viewController
-            
+            loadTabBarController()
+        } else {
+            let viewController = storyBoard.instantiateInitialViewController()
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main) { (Notification) in
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyBoard.instantiateInitialViewController()
             
+            let viewController = self.storyBoard.instantiateInitialViewController()
             self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
         }
         return true
+    }
+    
+    func loadTabBarController(){
+        let homeTimeLineNavigationController = storyBoard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        
+        let profileTimeLineNavigationController = storyBoard.instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
+        
+        
+        homeTimeLineNavigationController.tabBarItem.image = #imageLiteral(resourceName: "home-icon")
+        homeTimeLineNavigationController.tabBarItem.title = "Home"
+        
+        profileTimeLineNavigationController.tabBarItem.image = #imageLiteral(resourceName: "account-icon")
+        profileTimeLineNavigationController.tabBarItem.title = "Me"
+        
+        
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homeTimeLineNavigationController, profileTimeLineNavigationController]
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -58,10 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        loadTabBarController()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

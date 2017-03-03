@@ -67,8 +67,7 @@
         <!--Tweets View Controller-->
         <scene sceneID="wwS-fa-JU0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eZE-5D-3Tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="j5c-Fv-qDF" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TweetsViewController" automaticallyAdjustsScrollViewInsets="NO" id="j5c-Fv-qDF" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZkZ-Hy-HC9"/>
                         <viewControllerLayoutGuide type="bottom" id="8Ac-jm-NOW"/>
@@ -85,7 +84,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b9Y-ex-J7H" id="Pgv-UV-sCv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="136.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ryan Liszewski" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHx-bf-cNX">
@@ -253,8 +252,28 @@
                         <outlet property="tableView" destination="vUN-c4-E1l" id="6pY-oc-ugF"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eZE-5D-3Tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975.2" y="135.38230884557723"/>
+            <point key="canvasLocation" x="2914.4000000000001" y="135.38230884557723"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XXx-Hc-Xnp">
+            <objects>
+                <viewController storyboardIdentifier="ProfileNavigationController " id="co9-Sm-MUP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kwp-B2-h3s"/>
+                        <viewControllerLayoutGuide type="bottom" id="UlU-jG-VoD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AE7-oB-QHO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qcd-9X-5r9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPl-3a-dVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="887"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HHC-2Z-7iE">
@@ -268,12 +287,30 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="j5c-Fv-qDF" kind="relationship" relationship="rootViewController" id="5SH-iZ-6HR"/>
+                        <segue destination="j5c-Fv-qDF" kind="relationship" relationship="rootViewController" id="WiY-id-pHu"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aS-z3-mOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1036" y="135.38230884557723"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ajh-Ct-Dx2">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="gCh-XA-LF6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zPW-h6-nTz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="co9-Sm-MUP" kind="relationship" relationship="rootViewController" id="u51-po-FPe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GnD-ln-ejA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1065" y="887"/>
         </scene>
     </scenes>
     <resources>
