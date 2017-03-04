@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetCellDelegate {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetCellDelegate, ComposeTweetDelegate {
 
     
     var isMoreDataLoading: Bool = false
@@ -69,7 +69,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func getTweets(){
         TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) in
             
-
             self.tweets = tweets
             
             for tweet in tweets {
@@ -95,7 +94,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.isMoreDataLoading = false 
             
             self.tableView.reloadData()
-            
             
         }, failure: { (error:Error) in
             print("Error getting new tweets")
@@ -126,10 +124,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         cell.onButtonClickedDelegate = self
-        
-        
-        
-        
         
         if tweets != nil {
             cell.tweet = tweets?[indexPath.row]
@@ -240,20 +234,37 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         TwitterClient.sharedInstance?.logout()
         print("test")
     }
-
     
-    
-
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func composeButtonTapped(tweet: String!){
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let escapedTweet = tweet.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        
+        TwitterClient.sharedInstance?.composeTweet(tweet: escapedTweet!, success: { (tweet: Tweet) in
+            self.tweets.insert(tweet, at: 0)
+            self.tableView.reloadData()
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+        }, failure: { (error: Error) in
+            
+            print(error.localizedDescription)
+            
+        })
+        
+        
+        
     }
-    */
+
+    
+    
+
+    
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as! UINavigationController
+        let composeTweetViewController = navigationController.topViewController as! ComposeTweetViewController
+        composeTweetViewController.delegate = self
+    }
+  
 
 }

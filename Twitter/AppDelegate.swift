@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        //UITabBar.appearance().tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        UITabBar.appearance().tintColor = #colorLiteral(red: 0.1137254902, green: 0.7921568627, blue: 1, alpha: 1)
         
         if User.currentUser != nil {
             print("There is a current user")

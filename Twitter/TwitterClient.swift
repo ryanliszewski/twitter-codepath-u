@@ -145,6 +145,18 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func composeTweet(tweet: String, success: @escaping(Tweet) -> (), failure: @escaping (Error) -> ()) {
+        
+        post("1.1/statuses/update.json?status=\(tweet)", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any) in
+            
+            let tweetDictionary = response as! NSDictionary
+            let tweet = Tweet.init(dictionary: tweetDictionary)
+            success(tweet)
+        }) { (operation: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
+    }
+    
     
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
         
