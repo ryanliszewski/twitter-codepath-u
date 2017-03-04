@@ -226,6 +226,7 @@
                                             <outlet property="retweetedNameLabel" destination="D0g-8M-AkK" id="FeT-W2-d3h"/>
                                             <outlet property="tweetLabel" destination="GBC-Mb-kHw" id="mkI-Tx-WRM"/>
                                             <outlet property="userNameLabel" destination="Lwx-ME-QUA" id="n29-5v-tfH"/>
+                                            <segue destination="Kib-5f-rj4" kind="show" identifier="TweetDetailSegue" id="b8D-Fc-8ah"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -248,7 +249,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="edit-icon" id="VN5-rm-cNL">
                             <connections>
-                                <segue destination="JXZ-3t-Ja9" kind="presentation" id="Big-dh-Uc5"/>
+                                <segue destination="JXZ-3t-Ja9" kind="presentation" identifier="ComposeTweetSegue" id="Big-dh-Uc5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -259,6 +260,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZE-5D-3Tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2914.4000000000001" y="135.38230884557723"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="kBq-Yc-bKi">
+            <objects>
+                <viewController id="Kib-5f-rj4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1OW-Du-ePD"/>
+                        <viewControllerLayoutGuide type="bottom" id="iOd-Xa-mzr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oeb-7S-VsI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TAF-gw-aMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3847" y="138"/>
         </scene>
         <!--Compose Tweet View Controller-->
         <scene sceneID="XAN-Cm-g8Q">

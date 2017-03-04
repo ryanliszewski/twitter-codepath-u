@@ -256,14 +256,21 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
     
-
-    
-    
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as! UINavigationController
-        let composeTweetViewController = navigationController.topViewController as! ComposeTweetViewController
-        composeTweetViewController.delegate = self
+        
+        if(segue.identifier == "ComposeTweetSegue"){
+            let navigationController = segue.destination as! UINavigationController
+            let composeTweetViewController = navigationController.topViewController as! ComposeTweetViewController
+            composeTweetViewController.delegate = self
+        } else if(segue.identifier == "TweetDetailSegue"){
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let viewController = segue.destination as! TweetDetailViewController
+            viewController.tweet = tweet
+        }
+
     }
   
 
