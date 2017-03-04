@@ -168,7 +168,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    
     /*
  
         RETWEET AND FAVORITE BUTTON FUNCTION HANDLERS
@@ -250,12 +249,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         })
         
-        
-        
     }
 
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "ComposeTweetSegue"){
@@ -270,8 +265,5 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let viewController = segue.destination as! TweetDetailViewController
             viewController.tweet = tweet
         }
-
     }
-  
-
 }

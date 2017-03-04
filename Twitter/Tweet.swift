@@ -13,6 +13,7 @@ class Tweet: NSObject {
     var user: User?
     var text: String?
     var timeStamp: String?
+    var dateTimeStamp: String?
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
     var isRetweeted: Bool
@@ -71,8 +72,12 @@ class Tweet: NSObject {
         if let timeStampString = timeStampString {
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            let timeStampDate = formatter.date(from: timeStampString)!
-            timeStamp = Tweet.formatTweetTimeStamp(timeStampDate.timeIntervalSinceNow)
+            let formattedDateTimeStamp = formatter.date(from: timeStampString)!
+            
+            dateTimeStamp = formatter.string(from: formattedDateTimeStamp)
+            
+            
+            timeStamp = Tweet.formatTweetTimeStamp((formattedDateTimeStamp.timeIntervalSinceNow))
         }
         
         

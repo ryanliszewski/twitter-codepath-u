@@ -10,13 +10,25 @@ import UIKit
 
 class TweetDetailViewController: UIViewController {
 
-    
     var tweet: Tweet!
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        usernameLabel.text = tweet.user?.screenName
+        tweetTextLabel.adjustsFontSizeToFitWidth = true
+        tweetTextLabel.minimumScaleFactor = 0.5
+        tweetTextLabel.text = tweet.text
+        profileImageView.setImageWith((tweet.user?.profileUrl)!)
+        dateLabel.text = tweet.dateTimeStamp
+        nameLabel.text = tweet.user?.name
     }
 
     override func didReceiveMemoryWarning() {
