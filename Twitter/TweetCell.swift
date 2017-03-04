@@ -106,6 +106,9 @@ class TweetCell: UITableViewCell {
     @IBAction func onFavoriteButtonClicked(_ sender: Any) {
         onButtonClickedDelegate.onFavoriteButtonClicked(tweetCell: self)
     }
+    @IBAction func onProfileImageClicked(_ sender: Any) {
+        onButtonClickedDelegate.onProfileImageClicked(tweetCell: self)
+    }
     
    
 }
@@ -113,4 +116,5 @@ class TweetCell: UITableViewCell {
 protocol TweetCellDelegate: class {
     func onRetweetButtonClicked(tweetCell: TweetCell!)
     func onFavoriteButtonClicked(tweetCell: TweetCell!)
+    func onProfileImageClicked(tweetCell: TweetCell!)
 }

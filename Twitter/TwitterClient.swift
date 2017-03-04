@@ -58,7 +58,6 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
             
             
-            
             self.loginSuccess?()
             
             print("I got an access to  token")
@@ -68,6 +67,20 @@ class TwitterClient: BDBOAuth1SessionManager {
             
         }
 
+    }
+    
+    func getUserProfile(screenName: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        print("TEST")
+        get("1.1/users/show.json?screen_name=\(screenName)", parameters: nil,
+            progress: nil, success: { (task: URLSessionDataTask!, response: Any?) in
+            
+                let userDictionary = response as! NSDictionary
+                
+                let user = User.init(dictionary: userDictionary)
+                success(user)
+        }) { (operation: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
     }
     
     
@@ -80,9 +93,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                //print(response)
                 
                 let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
-                
-                
-                
+            
                 success(tweets)
                 
         }, failure: { (operation: URLSessionDataTask?, error: Error) -> Void in

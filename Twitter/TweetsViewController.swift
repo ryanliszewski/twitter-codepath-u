@@ -228,6 +228,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func onProfileImageClicked(tweetCell: TweetCell!) {
+//        
+//        TwitterClient.sharedInstance?.getUserProfile(screenName: (tweetCell.tweet.user?.screenName)!, success: { (user: User) in
+//            self.shouldPerformSegue(withIdentifier: "ProfileViewSegue", sender: user)
+//         
+//        }, failure: { (error: Error) in
+//            print(error.localizedDescription)
+//        })
+    
+    }
+    
     
     @IBAction func onLogoutButton(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
@@ -266,6 +277,19 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             viewController.tweet = tweet
             viewController.delegate = self
             viewController.tweetCell = cell as! TweetCell
+        } else if(segue.identifier == "ProfileViewSegue"){
+            
+            
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let viewController = segue.destination as! ProfileViewController
+            viewController.user = tweet.user
+            
         }
     }
 }
