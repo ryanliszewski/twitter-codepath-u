@@ -25,7 +25,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        if(user == nil){
+            user = User.currentUser
+        }
         
         followersLabel.text = String(describing: user.numberOfFollowers)
         followingLabel.text = String(describing: user.numberOfFollowing)
@@ -33,14 +35,18 @@ class ProfileViewController: UIViewController {
         screenNameLabel.text = user.screenName
         nameLabel.text = user.name
         profileImageView.setImageWith(user.profileUrl!)
-        profileBannerImageView.setImageWith(user.profileBannerUrl!)
+        
+        
+        if(user.profileBannerUrl != nil){
+           profileBannerImageView.setImageWith(user.profileBannerUrl!)
+        }
         
         
         // Do any additional setup after loading the view.
     }
     
     func getUser(){
-        TwitterClient.sharedInstance?.getUserProfile(screenName: user.screenName!, success: { (user: User) in
+        TwitterClient.sharedInstance?.getUserProfile(screenName: (User.currentUser?.screenName!)!, success: { (user: User) in
             self.user = user
             
         }, failure: { (error: Error) in
