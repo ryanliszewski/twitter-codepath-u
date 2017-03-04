@@ -423,6 +423,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Dc1-yW-OEo"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="SW7-L4-FWE" id="0Sr-e1-0PC"/>
                         <outlet property="followersLabel" destination="l1Y-Nb-hHz" id="JB0-Gz-kLU"/>
@@ -479,25 +480,6 @@
             </objects>
             <point key="canvasLocation" x="3852" y="-558.17091454272872"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="XXx-Hc-Xnp">
-            <objects>
-                <viewController storyboardIdentifier="ProfileNavigationController " id="co9-Sm-MUP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kwp-B2-h3s"/>
-                        <viewControllerLayoutGuide type="bottom" id="UlU-jG-VoD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AE7-oB-QHO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Qcd-9X-5r9"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IPl-3a-dVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1975" y="887"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="HHC-2Z-7iE">
             <objects>
@@ -528,7 +510,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="co9-Sm-MUP" kind="relationship" relationship="rootViewController" id="u51-po-FPe"/>
+                        <segue destination="2HN-Au-YpQ" kind="relationship" relationship="rootViewController" id="ksZ-rY-DOQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GnD-ln-ejA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -562,4 +544,7 @@
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ksZ-rY-DOQ"/>
+    </inferredMetricsTieBreakers>
 </document>
