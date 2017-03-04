@@ -299,14 +299,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emv-wt-DUs">
-                                <rect key="frame" x="61" y="236" width="25" height="25"/>
+                                <rect key="frame" x="35" y="271" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="reply-icon"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LdL-Y5-yFR">
-                                <rect key="frame" x="191" y="236" width="25" height="25"/>
+                                <rect key="frame" x="175" y="271" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="favor-icon"/>
+                                <connections>
+                                    <action selector="favoriteButtonTapped:" destination="Kib-5f-rj4" eventType="touchUpInside" id="skn-T7-bjD"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rw4-3F-ESm">
                                 <rect key="frame" x="16" y="188" width="343" height="21"/>
@@ -316,17 +319,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7v-7p-GO5">
-                                <rect key="frame" x="125" y="236" width="25" height="25"/>
+                                <rect key="frame" x="109" y="271" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="retweet-icon"/>
+                                <connections>
+                                    <action selector="retweetButtonTapped:" destination="Kib-5f-rj4" eventType="touchUpInside" id="t1j-61-FDK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="Rw4-3F-ESm" id="k9F-Jf-9QB"/>
+                        <outlet property="favoriteButton" destination="LdL-Y5-yFR" id="Kdk-ls-cYs"/>
                         <outlet property="nameLabel" destination="hPU-Di-zEG" id="WkN-p8-YWM"/>
                         <outlet property="profileImageView" destination="jPq-ZW-s5L" id="DKu-Rd-xYX"/>
+                        <outlet property="retweetButton" destination="Y7v-7p-GO5" id="Gn1-1I-we1"/>
                         <outlet property="tweetTextLabel" destination="PWY-1D-SQU" id="YLZ-Ny-65n"/>
                         <outlet property="usernameLabel" destination="DGc-fu-zK2" id="TV9-KC-ocJ"/>
                     </connections>

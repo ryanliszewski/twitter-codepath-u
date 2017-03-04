@@ -264,6 +264,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let viewController = segue.destination as! TweetDetailViewController
             viewController.tweet = tweet
+            viewController.delegate = self
+            viewController.tweetCell = cell as! TweetCell
         }
     }
 }

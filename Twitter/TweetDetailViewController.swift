@@ -11,13 +11,18 @@ import UIKit
 class TweetDetailViewController: UIViewController {
 
     var tweet: Tweet!
+    var delegate: TweetCellDelegate!
+    var tweetCell: TweetCell!
+    
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,10 @@ class TweetDetailViewController: UIViewController {
         profileImageView.setImageWith((tweet.user?.profileUrl)!)
         dateLabel.text = tweet.dateTimeStamp
         nameLabel.text = tweet.user?.name
+        
+        setUpRetweetButton()
+        setUpFavoriteButton()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +45,34 @@ class TweetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        self.delegate.onFavoriteButtonClicked(tweetCell: tweetCell)
+         setUpFavoriteButton()
+
+    }
+
+    @IBAction func retweetButtonTapped(_ sender: Any) {
+        self.delegate.onRetweetButtonClicked(tweetCell: tweetCell)
+        setUpRetweetButton()
+    }
+    
+    
+    func setUpRetweetButton(){
+        if(tweet.isRetweeted){
+            retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon-green")
+        } else {
+            retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon")
+        }
+    }
+    
+    func setUpFavoriteButton(){
+        if(tweet.isFavorited){
+            favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon-red")
+        } else {
+            favoriteButton.imageView?.image = #imageLiteral(resourceName: "favor-icon")
+        }
+    }
+
 
     /*
     // MARK: - Navigation
