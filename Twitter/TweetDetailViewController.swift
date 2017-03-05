@@ -48,13 +48,11 @@ class TweetDetailViewController: UIViewController {
     @IBAction func favoriteButtonTapped(_ sender: Any) {
 
         self.delegate.onFavoriteButtonClicked(tweetCell: tweetCell)
-        self.viewDidLoad()
     }
 
     @IBAction func retweetButtonTapped(_ sender: Any) {
         
         self.delegate.onRetweetButtonClicked(tweetCell: tweetCell)
-        self.viewDidLoad()
 
     }
     
