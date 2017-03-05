@@ -239,6 +239,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     }
     
+    func onReplyButtonClicked(tweetCell: TweetCell!){
+        
+    }
+    
     
     @IBAction func onLogoutButton(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
@@ -290,6 +294,21 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let viewController = segue.destination as! ProfileViewController
             viewController.user = tweet.user
             
+        } else if(segue.identifier == "ReplyComposeSegue"){
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let navigationController = segue.destination as! UINavigationController
+            let composeTweetViewController = navigationController.topViewController as! ComposeTweetViewController
+            
+            composeTweetViewController.isReply = true
+            composeTweetViewController.screenName = tweet.user?.screenName
+            
+
         }
     }
 }

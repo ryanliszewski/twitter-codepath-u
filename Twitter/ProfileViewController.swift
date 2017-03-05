@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
         
         if(user == nil){
             user = User.currentUser
+            getUser()
         }
         
         followersLabel.text = String(describing: user.numberOfFollowers)

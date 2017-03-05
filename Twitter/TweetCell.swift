@@ -41,7 +41,7 @@ class TweetCell: UITableViewCell {
             tweetLabel.adjustsFontSizeToFitWidth = true
             tweetLabel.minimumScaleFactor = 0.5
             nameLabel.text = tweet.user?.name
-            userNameLabel.text = (tweet.user?.screenName)! + "･ " + tweet.timeStamp!
+            userNameLabel.text =  "@" + (tweet.user?.screenName)! + "･ " + tweet.timeStamp!
             //timeStampLabel.text = tweet.timeStamp
             tweetLabel.text = tweet.text
             
@@ -110,6 +110,7 @@ class TweetCell: UITableViewCell {
         onButtonClickedDelegate.onProfileImageClicked(tweetCell: self)
     }
     
+    
    
 }
 
@@ -117,4 +118,5 @@ protocol TweetCellDelegate: class {
     func onRetweetButtonClicked(tweetCell: TweetCell!)
     func onFavoriteButtonClicked(tweetCell: TweetCell!)
     func onProfileImageClicked(tweetCell: TweetCell!)
+    func onReplyButtonClicked(tweetCell: TweetCell!)
 }

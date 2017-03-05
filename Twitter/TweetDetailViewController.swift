@@ -46,23 +46,26 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func favoriteButtonTapped(_ sender: Any) {
-        self.delegate.onFavoriteButtonClicked(tweetCell: tweetCell)
-         setUpFavoriteButton()
 
+        self.delegate.onFavoriteButtonClicked(tweetCell: tweetCell)
+        self.viewDidLoad()
     }
 
     @IBAction func retweetButtonTapped(_ sender: Any) {
+        
         self.delegate.onRetweetButtonClicked(tweetCell: tweetCell)
-        setUpRetweetButton()
+        self.viewDidLoad()
+
     }
     
-    
     func setUpRetweetButton(){
-        if(tweet.isRetweeted){
+        
+       if(tweet.isRetweeted){
             retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon-green")
         } else {
             retweetButton.imageView?.image = #imageLiteral(resourceName: "retweet-icon")
         }
+        
     }
     
     func setUpFavoriteButton(){

@@ -8,10 +8,15 @@
 
 import UIKit
 
-class ComposeTweetViewController: UIViewController {
+class ComposeTweetViewController: UIViewController,UITextViewDelegate {
     
+    @IBOutlet weak var textCountLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var textView: UITextView!
     
     var delegate: ComposeTweetDelegate!
+    var isReply: Bool = false
+    var screenName: String!
     
     @IBOutlet weak var tweetTextView: UITextView!
     
@@ -19,7 +24,18 @@ class ComposeTweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        textView.delegate = self
+        textView.becomeFirstResponder()
+        
+        profileImageView.setImageWith((User.currentUser?.profileUrl)!)
+        
+        if(isReply){
+            textView.text = "@" + screenName
+            textCountLabel.text = String(140 - textView.text.characters.count)
+        } else {
+            textCountLabel.text = "140"
+        }
+        
         // Do any additional setup after loading the view.
     }
 
@@ -37,7 +53,27 @@ class ComposeTweetViewController: UIViewController {
             self.delegate.composeButtonTapped(tweet: self.tweetTextView.text)
         }
     }
-  
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool{
+        return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView){
+        let length = 140 - textView.text.characters.count
+        textCountLabel.text = String(length)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
+        
+        if(text.characters.count == 0){
+            if(textView.text.characters.count != 0){
+                return true
+            }
+        } else if(textView.text.characters.count > 139){
+            return false
+        }
+        return true
+    }
 
     /*
     // MARK: - Navigation
