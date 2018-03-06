@@ -34,7 +34,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 140
 		
-		UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+		UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
 		self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "Image-1"))
 		
 		
@@ -101,7 +101,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 		})
 	}
 	
-	func refreshControlAction(_ refreshControl: UIRefreshControl) {
+	@objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
 		getTweets()
 		//refreshControl.endRefreshing()
 		
@@ -272,7 +272,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 			viewController.delegate = self
 			viewController.tweetCell = cell as! TweetCell
 		} else if(segue.identifier == "ProfileViewSegue"){
-			
 			
 			let button = sender as! UIButton
 			let view = button.superview!

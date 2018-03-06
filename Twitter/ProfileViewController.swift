@@ -2,76 +2,31 @@
 //  ProfileViewController.swift
 //  Twitter
 //
-//  Created by Ryan Liszewski on 3/4/17.
-//  Copyright © 2017 Smiley. All rights reserved.
+//  Created by Ryan Liszewski on 3/5/18.
+//  Copyright © 2018 Smiley. All rights reserved.
 //
 
 import UIKit
+import GSKStretchyHeaderView
+
 
 class ProfileViewController: UIViewController {
-
-    var user: User!
-    
-    @IBOutlet weak var followersLabel: UILabel!
-    @IBOutlet weak var followingLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var screenNameLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var profileBannerImageView: UIImageView!
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if(user == nil){
-            user = User.currentUser
-            getUser()
-        }
-        
-        followersLabel.text = String(describing: user.numberOfFollowers)
-        followingLabel.text = String(describing: user.numberOfFollowing)
-        descriptionLabel.text = user.tagline
-        screenNameLabel.text = user.screenName
-        nameLabel.text = user.name
-        profileImageView.setImageWith(user.profileUrl!)
-        
-        
-        if(user.profileBannerUrl != nil){
-           profileBannerImageView.setImageWith(user.profileBannerUrl!)
-        }
-        
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    func getUser(){
-        TwitterClient.sharedInstance?.getUserProfile(screenName: (User.currentUser?.screenName!)!, success: { (user: User) in
-            self.user = user
-            
-        }, failure: { (error: Error) in
-            print(error.localizedDescription)
-        })
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	
+	var user: User?
+	var stretchyHeader: GSKStretchyHeaderView!
+	
+	@IBOutlet weak var tableview: UITableView!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		if user == nil {
+			user = User._currentUser
+		}
+		
+		self.stretchyHeader = GSKStretchyHeaderView(frame: CGRect(x: 0, y: 0, width: tableview.frame.size.width, height: 200))
+		stretchyHeader.backgroundColor = #colorLiteral(red: 0.4763481021, green: 0.4931288958, blue: 0.8382745385, alpha: 1)
+		tableview.addSubview(stretchyHeader)
+	}
+	
 }
