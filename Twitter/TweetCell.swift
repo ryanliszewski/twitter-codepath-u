@@ -37,7 +37,8 @@ class TweetCell: UITableViewCell {
    
     var tweet: Tweet! {
         didSet {
-            
+					
+						profileImageView.layer.cornerRadius = 23.0
             tweetLabel.adjustsFontSizeToFitWidth = true
             tweetLabel.minimumScaleFactor = 0.5
             nameLabel.text = tweet.user?.name
