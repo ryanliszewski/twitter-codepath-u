@@ -93,7 +93,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" text="This is my first tweet! WOAH..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBC-Mb-kHw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="This is my first tweet! WOAH..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBC-Mb-kHw">
                                                     <rect key="frame" x="67" y="49" width="293" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -147,10 +147,10 @@
                                                         <segue destination="V3m-EU-Khx" kind="show" identifier="ProfileViewSegue" id="eO7-pQ-LYC"/>
                                                     </connections>
                                                 </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="xwN-tx-vOB">
-                                                    <rect key="frame" x="67" y="111" width="250" height="25"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="xwN-tx-vOB">
+                                                    <rect key="frame" x="67" y="74" width="250" height="25"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftK-6A-Ijq">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftK-6A-Ijq">
                                                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="7GY-Ov-FWa"/>
@@ -161,10 +161,10 @@
                                                                 <segue destination="JXZ-3t-Ja9" kind="presentation" identifier="ReplyComposeSegue" id="bdn-qE-ScP"/>
                                                             </connections>
                                                         </button>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVA-TX-I1w">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVA-TX-I1w">
                                                             <rect key="frame" x="84" y="0.0" width="53.5" height="25"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKB-lo-KDA">
+                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKB-lo-KDA">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="25" id="Utx-D6-ijr"/>
@@ -175,7 +175,7 @@
                                                                         <action selector="onRetweetButtonClicked:" destination="b9Y-ex-J7H" eventType="touchUpInside" id="Sex-TW-A9w"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6v-e7-VhK">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6v-e7-VhK">
                                                                     <rect key="frame" x="25" y="0.0" width="28.5" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -183,10 +183,10 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ls-dO-Ldc">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ls-dO-Ldc">
                                                             <rect key="frame" x="196.5" y="0.0" width="53.5" height="25"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTw-Yt-MNN">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTw-Yt-MNN">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="DGQ-R0-Kca"/>
@@ -197,7 +197,7 @@
                                                                         <action selector="onFavoriteButtonClicked:" destination="b9Y-ex-J7H" eventType="touchUpInside" id="KXu-tl-KDr"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DY5-rJ-vZ7">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DY5-rJ-vZ7">
                                                                     <rect key="frame" x="25" y="0.0" width="28.5" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -216,6 +216,7 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="xwN-tx-vOB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="GBC-Mb-kHw" secondAttribute="bottom" constant="8" id="1xu-uB-sKA"/>
                                                 <constraint firstItem="Lwx-ME-QUA" firstAttribute="leading" secondItem="xHx-bf-cNX" secondAttribute="trailing" constant="7" id="2xq-cS-dYb"/>
                                                 <constraint firstItem="Lwx-ME-QUA" firstAttribute="top" secondItem="qun-XU-zio" secondAttribute="bottom" constant="3" id="5HH-qi-gIA"/>
                                                 <constraint firstItem="GBC-Mb-kHw" firstAttribute="trailing" secondItem="Pgv-UV-sCv" secondAttribute="trailingMargin" id="67f-PS-eLF"/>
@@ -224,7 +225,6 @@
                                                 <constraint firstItem="qun-XU-zio" firstAttribute="top" secondItem="Pgv-UV-sCv" secondAttribute="top" constant="5" id="GZU-8r-dY2"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Lwx-ME-QUA" secondAttribute="trailing" id="J4f-hl-Xtm"/>
                                                 <constraint firstItem="xHx-bf-cNX" firstAttribute="leading" secondItem="7qG-8Z-Ur0" secondAttribute="trailing" constant="8" id="SCW-Hu-wNu"/>
-                                                <constraint firstAttribute="bottom" secondItem="xwN-tx-vOB" secondAttribute="bottom" id="VNI-br-gNG"/>
                                                 <constraint firstItem="GBC-Mb-kHw" firstAttribute="leading" secondItem="7qG-8Z-Ur0" secondAttribute="trailing" constant="8" id="cIK-Q8-rgv"/>
                                                 <constraint firstItem="GBC-Mb-kHw" firstAttribute="top" secondItem="Lwx-ME-QUA" secondAttribute="bottom" constant="3" id="euf-Dv-ioH"/>
                                                 <constraint firstItem="7qG-8Z-Ur0" firstAttribute="leading" secondItem="Pgv-UV-sCv" secondAttribute="leadingMargin" id="g2O-2P-Mql"/>
